@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-const ENDPOINT = "https://monitor30-dashboard-dot-stunning-base-164402.uc.r.appspot.com/backend/flexible/v2/monitor/updateDashboard30";
+const ENDPOINT = "https://weight-dash-dot-monitor30-dashboard-dot-stunning-base-164402.uc.r.appspot.com/backend/flexible/v2/monitor/updateDashboard30";
 const DASHBOARD_TYPE = {express: "EXPRESS", flash: "FLASH", fraud: "FRAUD"};
 const TIMEZONE = {timeZone: "America/Bogota"};
 const INTERVAL_TIME = 30000;
@@ -17,7 +17,7 @@ const INTERVAL_TIME = 30000;
 
     try {
         setInterval(() => {
-           updateDashboardMonitor(DASHBOARD_TYPE.flash);
+           updateDashboardMonitor(DASHBOARD_TYPE.express);
         }, INTERVAL_TIME);
     } catch (err) {
         console.log("ERROR WHEN CALLING INTERVAL", err);

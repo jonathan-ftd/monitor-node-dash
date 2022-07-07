@@ -44,15 +44,22 @@ const DASHBOARDS = [
     }
 ];
 const TIMEZONE = {timeZone: "America/Bogota"};
-//const INTERVAL_TIME = 30000;
+
+const dashboardsRetryRequest = ["CANCELED", "PAYU_WITHOUT_FINALIZE", "MESSENGERS"];
 
 (function() {
     const updateDashboardMonitor = async function(dashboardType) {
         try {
             const res = await axios.get(`${ENDPOINT}/${dashboardType}`);
-            console.log(dashboardType, new Date().toLocaleString("en-US", TIMEZONE), res.data.data.message);
+            if (res?.status === 200) {
+                console.log(dashboardType, new Date().toLocaleString("en-US", TIMEZONE), res.data.data.message);
+            }
         } catch (err) {
             console.log(new Date().toLocaleString("en-US", TIMEZONE), "ERROR WHEN CALLING updateDashboard30", dashboardType, err)
+            if (dashboardsRetryRequest.includes(dashboardType) && err?.response?.status === 503) {
+                console.log("RETRYING TO UPDATE REDIS CACHE IN ", dashboardType);
+                updateDashboardMonitor(dashboardType);
+            }
         }
     } 
 
