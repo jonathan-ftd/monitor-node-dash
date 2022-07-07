@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-const ENDPOINT = "https://springbk5-dot-monitor30-dashboard-dot-oracle-services-vzla.uc.r.appspot.com/backend/flexible/v2/monitor/updateDashboard30";
+const ENDPOINT = "https://monitor30-dashboard-dot-oracle-services-vzla.uc.r.appspot.com/backend/flexible/v2/monitor/updateDashboard30";
 const DASHBOARDS = [
     {
         name: "EXPRESS", 
